@@ -9,10 +9,12 @@ import Icon from "./../assets/images/adaptive-icon.png";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
+import { Article } from "@/models/article";
 
 export type ArticleCardProps = ViewProps & {
   lightColor?: string;
   darkColor?: string;
+  article: Article;
 };
 
 export function ArticleCard({

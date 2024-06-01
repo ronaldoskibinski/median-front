@@ -5,8 +5,22 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { ArticleCard } from "@/components/ArticleCard";
+import { ArticleService } from "@/services/article";
+import { useEffect } from "react";
 
 export default function TabTwoScreen() {
+
+  const articleService = new ArticleService();
+
+  const getArticles = async () => {
+    const data = await articleService.getArticles();
+    console.log(data);
+  }
+
+  useEffect(() => {
+    getArticles()
+  }, [])
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
