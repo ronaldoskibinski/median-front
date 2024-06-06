@@ -1,10 +1,11 @@
 import { Http } from "@/api/api"
+import { Article } from "@/models/article";
 
 
-export class ArticleService extends Http {
+export class ArticleService extends Http<Article> {
     protected resource: string = 'articles'; 
  
-    getArticles = async () => {
+    getArticles = async (): Promise<Article[]> => {
         return await this.get();
     }
 }

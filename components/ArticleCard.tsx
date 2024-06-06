@@ -18,6 +18,7 @@ export type ArticleCardProps = ViewProps & {
 };
 
 export function ArticleCard({
+  article,
   style,
   lightColor,
   darkColor,
@@ -34,9 +35,12 @@ export function ArticleCard({
         <Image style={styles.image} source={Icon} />
       </ThemedView>
       <ThemedView style={styles.cardContentContainer}>
-        <ThemedText style={styles.contentTitle}>Article Title</ThemedText>
+        <ThemedText style={styles.contentTitle}>{article.title}</ThemedText>
         <ThemedText style={styles.contentDescription}>
-          Article Description asdsadasdsadasdasdasdasd
+        {article.description}
+        </ThemedText>
+        <ThemedText style={styles.updatedAt}>
+        Atualizado em: {article.updatedAt.toString()}
         </ThemedText>
       </ThemedView>
     </TouchableOpacity>
@@ -53,7 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 1,
     padding: 10,
-    height: 300,
+    height: 350,
   },
 
   cardImageContainer: {
@@ -67,6 +71,9 @@ const styles = StyleSheet.create({
   },
 
   cardContentContainer: {
+    width: "100%",
+    height: 130,
+    position: "relative",
     marginTop: 20,
     flexDirection: "column",
     alignItems: "flex-start",
@@ -80,4 +87,10 @@ const styles = StyleSheet.create({
   contentDescription: {
     textAlign: "justify",
   },
+
+  updatedAt: {
+    position: "absolute",
+    bottom: 0,
+    fontSize: 8,
+  }
 });

@@ -1,20 +1,21 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
 
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { ArticleCard } from "@/components/ArticleCard";
 import { ArticleService } from "@/services/article";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Article } from "@/models/article";
 
 export default function TabTwoScreen() {
 
   const articleService = new ArticleService();
+  const [articles, setArticles] = useState<Article[]>([]);
 
   const getArticles = async () => {
     const data = await articleService.getArticles();
-    console.log(data);
+    setArticles(data);
   }
 
   useEffect(() => {
@@ -24,16 +25,23 @@ export default function TabTwoScreen() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
-      headerImage={
-        <Ionicons size={310} name="code-slash" style={styles.headerImage} />
+      headerImage={        
+        <Image
+          source={require("@/assets/images/explore.jpg")}
+          style={styles.exploreBg}
+        />
       }
     >
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Explore some articles</ThemedText>
       </ThemedView>
       <ThemedView>
-        <ArticleCard></ArticleCard>
-        <ArticleCard></ArticleCard>
+        {
+          articles.map(
+            article => 
+              <ArticleCard key={article.id} article={article}></ArticleCard>
+          )
+        }
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -52,5 +60,13 @@ const styles = StyleSheet.create({
   },
   articlesContainer: {
     flexDirection: "row",
+  },
+  exploreBg: {
+    height: "100%",
+    width: "100%",
+    objectFit: "fill",
+    bottom: 0,
+    left: 0,
+    position: "absolute",
   },
 });

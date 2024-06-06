@@ -1,9 +1,11 @@
-import axios, { AxiosPromise } from "axios";
+import axios from "axios";
 
-export class Http {
+export class Http<T> {
+    private apiUrl = process.env.EXPO_PUBLIC_API_URL;
     protected resource: string = '';
 
-    protected get = async (): AxiosPromise => {
-        return await axios.get(this.resource);
+    protected get = async (): Promise<T[]> => {
+        const response = await axios.get(`${this.apiUrl}/${this.resource}`);
+        return response.data;
     }
 }
