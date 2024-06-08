@@ -54,13 +54,16 @@ const styles = StyleSheet.create({
     left: -35,
     position: "absolute",
   },
+  
   titleContainer: {
     flexDirection: "row",
     gap: 8,
   },
+
   articlesContainer: {
     flexDirection: "row",
   },
+
   exploreBg: {
     height: "100%",
     width: "100%",

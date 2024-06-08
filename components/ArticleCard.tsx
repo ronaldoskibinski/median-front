@@ -6,10 +6,12 @@ import {
 } from "react-native";
 import Icon from "./../assets/images/adaptive-icon.png";
 
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
 import { Article } from "@/models/article";
+import { RootStackParamList } from "./navigation/AppNavigator";
 
 export type ArticleCardProps = ViewProps & {
   lightColor?: string;
@@ -24,13 +26,21 @@ export function ArticleCard({
   darkColor,
   ...otherProps
 }: ArticleCardProps) {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
     "background"
   );
 
+  const handlePress = () => {
+    navigation.navigate("article", { article });
+  };
+
+
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <TouchableOpacity style={[styles.cardContainer, { backgroundColor }]}
+    onPress={handlePress}>
       <ThemedView style={styles.cardImageContainer}>
         <Image style={styles.image} source={Icon} />
       </ThemedView>

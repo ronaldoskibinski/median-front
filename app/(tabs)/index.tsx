@@ -1,7 +1,7 @@
 import { Image, StyleSheet } from "react-native";
 
-import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { HelloWave } from "@/components/HelloWave";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { Link } from "expo-router";
@@ -50,10 +50,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
   },
+
   stepContainer: {
     gap: 8,
     marginBottom: 8,
   },
+
   homeBg: {
     height: "100%",
     width: "100%",
