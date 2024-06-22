@@ -24,7 +24,7 @@ export default function HomeScreen() {
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Create your account</ThemedText>
         <ThemedText>
-          <Link href="home">Sign up now.</Link>
+          <Link href="signup" style={styles.link}>Sign up now.</Link>
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
@@ -63,5 +63,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: "absolute",
+  },
+
+  link: {
+    color: "green",
   },
 });
