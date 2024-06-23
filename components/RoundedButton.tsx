@@ -1,16 +1,29 @@
 import type { PropsWithChildren } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { DimensionValue, Pressable, StyleSheet } from 'react-native';
 import { ThemedText } from './ThemedText';
 
-type Props = PropsWithChildren;
+export interface GenericButton {
+  width?: DimensionValue,
+  title: string,
+  border?: boolean,
+  bgColor?: string,
+  function: () => void
+}
+
+type Props = PropsWithChildren<{
+  button: GenericButton;
+}>;
 
 export default function RoundedButton({
   children,
+  button,
 }: Props) {
 
   return (
-    <Pressable style={styles.rounded}>
-      <ThemedText style={styles.text}>{children}</ThemedText>
+    <Pressable style={[styles.rounded, { width: button.width ? button.width : '100%', 
+                                          backgroundColor: button.bgColor, 
+                                          borderWidth: button.border ? 1 : 0 }]} onPress={button.function}>
+      <ThemedText style={styles.text}>{button.title}</ThemedText>
     </Pressable>
   );
 }
